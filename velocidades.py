@@ -9,7 +9,6 @@ import misfunciones as rodo
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.spatial import distance
-import seaborn as sns
 
 trayectorias = rodo.cargararchivo('trajectories_TODAS.txt', delimiter='\t')
 trayectorias = np.asarray(trayectorias)
@@ -49,15 +48,15 @@ velocidad_std = np.std(velocidades,axis=0, dtype=np.float32)
 
 #-----------------------------------------------------------------------------------------------------------------PLOT
 
-x = np.arange(0,200)
+stp = 150
+x = np.arange(0,stp)
 plt.figure(figsize=(10,7))
-plt.plot(x,velocidad_promedio[0:200],c = 'k', lw = 0.88, label = 'Velocidad')
-plt.fill_between(x, velocidad_promedio[0:200] - velocidad_std[0:200], velocidad_promedio[0:200] + velocidad_std[0:200], color='k', alpha=0.1)
+plt.plot(velocidad_promedio[0:stp],c = 'k', lw = 0.88, label = 'Velocidad')
+plt.fill_between(x, velocidad_promedio[0:stp] - velocidad_std[0:stp], velocidad_promedio[0:stp] + velocidad_std[0:stp], color='k', alpha=0.1)
 plt.title('Velocidad promedio por sesión', fontsize = 12, fontweight = 'bold')
 plt.xlabel('Tiempo', fontsize = 10, fontweight = 'normal')
 plt.ylabel('Velocidad', fontsize = 10, fontweight = 'normal')
 plt.legend(loc = 'best', frameon= False)
 plt.show()
-
 
 
